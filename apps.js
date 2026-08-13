@@ -74,14 +74,15 @@ const books = [
 ];
 
 const bookGrid = document.getElementById("book-grid");
+const searchInput = document.getElementById("search-input");
 
-function renderBooks() {
-    if (books.length === 0) {
-        bookGrid.innerHTML = "<p>No books available in the catalogue.</p>";
+function renderBooks(bookList) {
+    if (bookList.length === 0) {
+        bookGrid.innerHTML = "<p>No books found matching your search.</p>";
         return;
     }
 
-    bookGrid.innerHTML = books.map(book => `
+    bookGrid.innerHTML = bookList.map(book => `
         <article class="book-card">
             <div class="book-card-content">
                 <span class="book-category">${book.category}</span>
@@ -95,4 +96,17 @@ function renderBooks() {
     `).join("");
 }
 
-renderBooks();
+function searchBooks() {
+    const searchTerm = searchInput.value.toLowerCase().trim();
+
+    const filteredBooks = books.filter(book =>
+        book.title.toLowerCase().includes(searchTerm) ||
+        book.author.toLowerCase().includes(searchTerm)
+    );
+
+    renderBooks(filteredBooks);
+}
+
+searchInput.addEventListener("input", searchBooks);
+
+renderBooks(books);
