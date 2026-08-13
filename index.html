@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LibriVault - Library Catalogue</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
 <body>
 
     <header class="site-header">
@@ -13,8 +22,50 @@
     </header>
 
     <main>
-        <h1>Library Catalogue</h1>
+        <section id="catalogue" class="catalogue-section">
+            <div class="catalogue-header">
+                <h1>Library Catalogue</h1>
+                <p>Explore our collection of books.</p>
+            </div>
+
+            <div class="book-grid">
+
+                <article class="book-card">
+                    <div class="book-card-content">
+                        <span class="book-category">Fiction</span>
+                        <h2>The Great Gatsby</h2>
+                        <p class="book-author">F. Scott Fitzgerald</p>
+                    </div>
+                </article>
+
+                <article class="book-card">
+                    <div class="book-card-content">
+                        <span class="book-category">Science</span>
+                        <h2>A Brief History of Time</h2>
+                        <p class="book-author">Stephen Hawking</p>
+                    </div>
+                </article>
+
+                <article class="book-card">
+                    <div class="book-card-content">
+                        <span class="book-category">Fantasy</span>
+                        <h2>The Hobbit</h2>
+                        <p class="book-author">J.R.R. Tolkien</p>
+                    </div>
+                </article>
+
+                <article class="book-card">
+                    <div class="book-card-content">
+                        <span class="book-category">Technology</span>
+                        <h2>Clean Code</h2>
+                        <p class="book-author">Robert C. Martin</p>
+                    </div>
+                </article>
+
+            </div>
+        </section>
     </main>
 
     <script src="apps.js"></script>
 </body>
+</html>
