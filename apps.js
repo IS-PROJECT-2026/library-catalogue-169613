@@ -72,3 +72,27 @@ const books = [
         availability: true
     }
 ];
+
+const bookGrid = document.getElementById("book-grid");
+
+function renderBooks() {
+    if (books.length === 0) {
+        bookGrid.innerHTML = "<p>No books available in the catalogue.</p>";
+        return;
+    }
+
+    bookGrid.innerHTML = books.map(book => `
+        <article class="book-card">
+            <div class="book-card-content">
+                <span class="book-category">${book.category}</span>
+                <h2>${book.title}</h2>
+                <p class="book-author">${book.author}</p>
+                <p class="book-availability">
+                    ${book.availability ? "Available" : "Unavailable"}
+                </p>
+            </div>
+        </article>
+    `).join("");
+}
+
+renderBooks();
