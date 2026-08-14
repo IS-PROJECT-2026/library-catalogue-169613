@@ -11,9 +11,11 @@
 
     <header class="site-header">
         <div class="container">
-            <a href="#" class="logo">📚 LibriVault</a>
+            <a href="#" class="logo" aria-label="LibriVault home">
+                📚 LibriVault
+            </a>
 
-            <nav class="main-nav">
+            <nav class="main-nav" aria-label="Main navigation">
                 <a href="#" class="nav-link active">Home</a>
                 <a href="#catalogue" class="nav-link">Catalogue</a>
                 <a href="#favourites" class="nav-link">Favourites</a>
@@ -22,9 +24,13 @@
     </header>
 
     <main>
-        <section id="catalogue" class="catalogue-section">
+        <section
+            id="catalogue"
+            class="catalogue-section"
+            aria-labelledby="catalogue-title"
+        >
             <div class="catalogue-header">
-                <h1>Library Catalogue</h1>
+                <h1 id="catalogue-title">Library Catalogue</h1>
                 <p>Explore our collection of books.</p>
             </div>
 
@@ -40,7 +46,10 @@
 
             <div class="filter-container">
                 <label for="category-filter">Filter by category</label>
-                <select id="category-filter">
+                <select
+                    id="category-filter"
+                    aria-label="Filter books by category"
+                >
                     <option value="all">All Categories</option>
                     <option value="Fiction">Fiction</option>
                     <option value="Fantasy">Fantasy</option>
@@ -51,7 +60,11 @@
                 </select>
             </div>
 
-            <div class="book-grid" id="book-grid"></div>
+            <div
+                class="book-grid"
+                id="book-grid"
+                aria-live="polite"
+            ></div>
         </section>
     </main>
 
