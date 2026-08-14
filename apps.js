@@ -75,10 +75,11 @@ const books = [
 
 const bookGrid = document.getElementById("book-grid");
 const searchInput = document.getElementById("search-input");
+const categoryFilter = document.getElementById("category-filter");
 
 function renderBooks(bookList) {
     if (bookList.length === 0) {
-        bookGrid.innerHTML = "<p>No books found matching your search.</p>";
+        bookGrid.innerHTML = "<p>No books found matching your search or category.</p>";
         return;
     }
 
@@ -96,17 +97,26 @@ function renderBooks(bookList) {
     `).join("");
 }
 
-function searchBooks() {
+function filterBooks() {
     const searchTerm = searchInput.value.toLowerCase().trim();
+    const selectedCategory = categoryFilter.value;
 
-    const filteredBooks = books.filter(book =>
-        book.title.toLowerCase().includes(searchTerm) ||
-        book.author.toLowerCase().includes(searchTerm)
-    );
+    const filteredBooks = books.filter(book => {
+        const matchesSearch =
+            book.title.toLowerCase().includes(searchTerm) ||
+            book.author.toLowerCase().includes(searchTerm);
+
+        const matchesCategory =
+            selectedCategory === "all" ||
+            book.category === selectedCategory;
+
+        return matchesSearch && matchesCategory;
+    });
 
     renderBooks(filteredBooks);
 }
 
-searchInput.addEventListener("input", searchBooks);
+searchInput.addEventListener("input", filterBooks);
+categoryFilter.addEventListener("change", filterBooks);
 
 renderBooks(books);
