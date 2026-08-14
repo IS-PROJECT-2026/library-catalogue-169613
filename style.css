@@ -173,3 +173,51 @@ main {
     outline: none;
     border-color: #2563eb;
 }
+.book-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.favourite-button {
+    border: none;
+    background: transparent;
+    color: #6b7280;
+    font-size: 1.8rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.1rem;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.favourite-button:hover {
+    transform: scale(1.15);
+    color: #dc2626;
+}
+
+.favourite-button.favourited {
+    color: #dc2626;
+}
+
+.book-availability {
+    margin-top: 1rem;
+    font-weight: 600;
+}
+
+.book-availability.available {
+    color: #16a34a;
+}
+
+.book-availability.unavailable {
+    color: #dc2626;
+}
+
+.book-unavailable {
+    background: #f3f4f6;
+    opacity: 0.75;
+}
+
+.book-unavailable h2 {
+    color: #6b7280;
+}
