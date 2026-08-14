@@ -77,24 +77,64 @@ const bookGrid = document.getElementById("book-grid");
 const searchInput = document.getElementById("search-input");
 const categoryFilter = document.getElementById("category-filter");
 
+const favouriteBooks = new Set();
+
 function renderBooks(bookList) {
     if (bookList.length === 0) {
-        bookGrid.innerHTML = "<p>No books found matching your search or category.</p>";
+        bookGrid.innerHTML =
+            "<p>No books found matching your search or category.</p>";
         return;
     }
 
-    bookGrid.innerHTML = bookList.map(book => `
-        <article class="book-card">
-            <div class="book-card-content">
-                <span class="book-category">${book.category}</span>
-                <h2>${book.title}</h2>
-                <p class="book-author">${book.author}</p>
-                <p class="book-availability">
-                    ${book.availability ? "Available" : "Unavailable"}
-                </p>
-            </div>
-        </article>
-    `).join("");
+    bookGrid.innerHTML = bookList.map(book => {
+        const isFavourite = favouriteBooks.has(book.title);
+
+        return `
+            <article class="book-card ${book.availability ? "" : "book-unavailable"}">
+                <div class="book-card-content">
+
+                    <div class="book-card-top">
+                        <span class="book-category">${book.category}</span>
+
+                        <button
+                            class="favourite-button ${isFavourite ? "favourited" : ""}"
+                            data-title="${book.title}"
+                            aria-label="${isFavourite ? "Remove from favourites" : "Add to favourites"}"
+                            title="${isFavourite ? "Remove from favourites" : "Add to favourites"}"
+                        >
+                            ${isFavourite ? "♥" : "♡"}
+                        </button>
+                    </div>
+
+                    <h2>${book.title}</h2>
+
+                    <p class="book-author">${book.author}</p>
+
+                    <p class="book-availability ${book.availability ? "available" : "unavailable"}">
+                        ${book.availability ? "✓ Available" : "✕ Unavailable"}
+                    </p>
+
+                </div>
+            </article>
+        `;
+    }).join("");
+
+    const favouriteButtons =
+        document.querySelectorAll(".favourite-button");
+
+    favouriteButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const bookTitle = button.dataset.title;
+
+            if (favouriteBooks.has(bookTitle)) {
+                favouriteBooks.delete(bookTitle);
+            } else {
+                favouriteBooks.add(bookTitle);
+            }
+
+            filterBooks();
+        });
+    });
 }
 
 function filterBooks() {
