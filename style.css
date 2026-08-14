@@ -145,3 +145,31 @@ main {
         grid-template-columns: 1fr;
     }
 }
+.search-container,
+.filter-container {
+    margin-bottom: 1.5rem;
+}
+
+.search-container label,
+.filter-container label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.search-container input,
+.filter-container select {
+    width: 100%;
+    max-width: 400px;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: #ffffff;
+}
+
+.search-container input:focus,
+.filter-container select:focus {
+    outline: none;
+    border-color: #2563eb;
+}
